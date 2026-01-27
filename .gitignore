@@ -1,0 +1,34 @@
+.DS_Store
+
+core/vendor
+core/storage/app/*
+core/storage/debugbar/*
+core/storage/framework/cache/data/*
+core/storage/framework/sessions/*
+core/storage/framework/testing/*
+core/storage/framework/views/*
+core/storage/logs/*
+core/composer.lock
+storage
+
+.vscode
+test.js
+test.css
+/vendor/
+# IDE Files
+#-------------------------
+/nbproject/
+.idea/*
+
+## Sublime Text cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+/tests/tests/
+/tests/results/
+*.zip
+*.sql
+*.env
+composer.lock
