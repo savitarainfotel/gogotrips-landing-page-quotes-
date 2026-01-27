@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,11 +16,39 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        User::factory()->create([
+            'name' => 'Chintan',
+            'email' => 'chintan@gogotripsus.com',
+            'password' => Hash::make('Savitara@123p'),
+            'email_verified_at' => now(),
+        ]);
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Kedar',
+            'email' => 'kedar@gogotripsus.com',
+            'password' => Hash::make('Savitara@123p'),
+            'email_verified_at' => now(),
+        ]);
+
+        User::factory()->create([
+            'name' => 'QA',
+            'email' => 'qa@gogotripsus.com',
+            'password' => Hash::make('Savitara@123p'),
+            'email_verified_at' => now(),
+        ]);
+
+        User::factory()->create([
+            'name' => 'Saurabh',
+            'email' => 'saurabh@savitarainfotel.com',
+            'password' => Hash::make('Savitara@123p'),
+            'email_verified_at' => now(),
+        ]);
+
+        User::factory()->create([
+            'name' => 'Jignesh',
+            'email' => 'jignesh@gogotripsus.com',
+            'password' => Hash::make('Savitara@123p'),
+            'email_verified_at' => now(),
         ]);
     }
 }
