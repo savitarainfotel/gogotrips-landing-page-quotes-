@@ -35,13 +35,11 @@
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
             @if (session('status') === 'password-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-muted small mb-0"
-                >{{ __('Saved.') }}</p>
+                <div class="alert alert-success alert-dismissible fade show mb-0 py-2" role="alert">
+                    <i class="bi bi-check-circle me-2"></i>
+                    <span>{{ __('Saved.') }}</span>
+                    <button type="button" class="btn-close btn-close-sm" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             @endif
         </div>
     </form>
