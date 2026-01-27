@@ -59,13 +59,23 @@ class BookingController extends Controller
                 break;
 
             case 'Multi City':
-                # code...
+                $rules['trips'] = ['required', 'array', 'min:1'];
+                $rules['trips.*.from'] = ['required', 'string', 'max:255'];
+                $rules['trips.*.to'] = ['required', 'string', 'max:255'];
+                $rules['trips.*.date'] = ['required', 'string', 'after_or_equal:today'];
+
+                $messages['trips.required'] = 'At least one trip is required.';
+                $messages['trips.array'] = 'Trips must be an array.';
+                $messages['trips.min'] = 'At least one trip is required.';
+                $messages['trips.*.from.required'] = 'From location is required for each trip.';
+                $messages['trips.*.to.required'] = 'To location is required for each trip.';
+                $messages['trips.*.date.required'] = 'Date is required for each trip.';
                 break;
 
             default:
                 $rules['departure'] = ['required', 'string', 'max:255'];
                 $rules['arrival'] = ['required', 'string', 'max:255'];
-                $rules['departureDate'] = ['required', 'string', 'date'];
+                $rules['departureDate'] = ['required', 'string', 'after_or_equal:today'];
                 break;
         }
 
@@ -91,7 +101,7 @@ class BookingController extends Controller
                 ]);
                 break;
 
-            default:
+            case 'One Way':
                 $request->merge([
                     'trips' => [[
                         'departureDate' => $request->departureDate,
@@ -121,10 +131,10 @@ class BookingController extends Controller
             // Create the trips
             foreach ($trips as $trip) {
                 $booking->trips()->create([
-                    'departure_date' => $trip['departureDate'],
+                    'departure_date' => $trip['departureDate'] ?? ($trip['date'] ?? null),
                     'arrival_date'   => $trip['arrivalDate'] ?? null,
-                    'arrival'        => $trip['arrival'],
-                    'departure'      => $trip['departure']
+                    'arrival'        => $trip['arrival'] ?? ($trip['to'] ?? null),
+                    'departure'      => $trip['departure'] ?? ($trip['from'] ?? null)
                 ]);
             }
 
