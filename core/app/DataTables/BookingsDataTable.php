@@ -21,9 +21,9 @@ class BookingsDataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function (Booking $booking) {
-                return view('bookings.action', compact('booking'))->render();
-            })
+            // ->addColumn('action', function (Booking $booking) {
+            //     return view('bookings.action', compact('booking'))->render();
+            // })
             ->addColumn('trips', function (Booking $booking) {
                 return view('bookings.trips', compact('booking'))->render();
             })
@@ -125,12 +125,12 @@ class BookingsDataTable
                 ->title('Created At')
                 ->width('12%')
                 ->addClass('text-center'),
-            Column::computed('action')
+            /* Column::computed('action')
                 ->title('Actions')
                 ->width('8%')
                 ->exportable(false)
                 ->printable(false)
-                ->addClass('text-center')
+                ->addClass('text-center') */
         ];
     }
 
