@@ -183,7 +183,7 @@ class BookingController extends Controller
                 'airport',
                 'iata_code',
                 'city',
-            ], 'LIKE', "%{$request->q}%")->limit($request->limit ?? 10)->get();
+            ], 'LIKE', "%{$request->q}%")->limit($request->limit ?? 10)->orderBy('iata_code', 'ASC')->get();
         }
 
         return response()->json($airportCodes, 200);
