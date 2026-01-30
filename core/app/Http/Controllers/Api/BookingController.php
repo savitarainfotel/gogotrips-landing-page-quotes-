@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use App\Models\AirportCode;
 
 class BookingController extends Controller
 {
@@ -159,5 +160,43 @@ class BookingController extends Controller
                 'message' => 'An error occurred while creating the booking. Please try again later.',
             ], 500);
         }
+    }
+
+    /**
+     * Search Airport Codes.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function searchAirportCodes(Request $request): JsonResponse
+    {
+        $airportCodes = [];
+
+        if($request->q) {
+            $airportCodes = AirportCode::select([
+                'id',
+                'airport',
+                'airport_type',
+                'city',
+                'country',
+                'iata',
+                'icao',
+                'faa',
+            ])->whereAny([
+                'airport',
+                'airport_type',
+                'city',
+                'country',
+                'iata',
+                'icao',
+                'faa',
+            ], 'LIKE', "%{$request->q}%")->limit(10)->get();
+        }
+
+        return response()->json([
+            'success' => true,
+            'airportCodes' => $airportCodes,
+            'message' => 'Booking created successfully.'
+        ], 200);
     }
 }
