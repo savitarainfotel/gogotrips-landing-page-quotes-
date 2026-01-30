@@ -176,27 +176,16 @@ class BookingController extends Controller
             $airportCodes = AirportCode::select([
                 'id',
                 'airport',
-                'airport_type',
+                'iata_code AS airport_code',
                 'city',
-                'country',
-                'iata',
-                'icao',
-                'faa',
+                'iso_country AS country_code'
             ])->whereAny([
                 'airport',
-                'airport_type',
+                'iata_code',
                 'city',
-                'country',
-                'iata',
-                'icao',
-                'faa',
-            ], 'LIKE', "%{$request->q}%")->limit(10)->get();
+            ], 'LIKE', "%{$request->q}%")->limit($request->limit ?? 10)->get();
         }
 
-        return response()->json([
-            'success' => true,
-            'airportCodes' => $airportCodes,
-            'message' => 'Booking created successfully.'
-        ], 200);
+        return response()->json($airportCodes, 200);
     }
 }
