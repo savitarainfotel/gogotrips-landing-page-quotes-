@@ -18,6 +18,11 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </li>
+                <li class="nav-item">
+                    <x-nav-link :href="route('airport-codes.index')" :active="request()->routeIs('airport-codes.*')">
+                        {{ __('Airport Codes') }}
+                    </x-nav-link>
+                </li>
             </ul>
 
             <!-- Settings Dropdown -->
