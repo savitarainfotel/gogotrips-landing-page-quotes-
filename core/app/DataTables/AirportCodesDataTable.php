@@ -81,11 +81,11 @@ class AirportCodesDataTable
                 ->title('ID')
                 ->width('4%')
                 ->addClass('text-center'),
-            Column::make('iata')
+            Column::make('iata_code')
                 ->title('IATA')
                 ->width('6%')
                 ->addClass('text-center'),
-            Column::make('icao')
+            Column::make('icao_code')
                 ->title('ICAO')
                 ->width('6%')
                 ->addClass('text-center'),
@@ -97,18 +97,18 @@ class AirportCodesDataTable
                 ->title('City')
                 ->width('12%')
                 ->addClass('text-start'),
-            Column::make('country')
+            Column::make('iso_country')
                 ->title('Country')
-                ->width('12%')
-                ->addClass('text-start'),
-            Column::make('airport_type')
-                ->title('Type')
                 ->width('10%')
                 ->addClass('text-start'),
-            Column::make('faa')
-                ->title('FAA')
-                ->width('6%')
-                ->addClass('text-center'),
+            Column::make('iso_region')
+                ->title('Region')
+                ->width('10%')
+                ->addClass('text-start'),
+            Column::make('coordinates')
+                ->title('Coordinates')
+                ->width('12%')
+                ->addClass('text-start'),
             Column::make('created_at')
                 ->title('Created')
                 ->width('10%')

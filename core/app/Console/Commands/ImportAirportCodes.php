@@ -33,7 +33,7 @@ class ImportAirportCodes extends Command
 
         // Reading the file line by line into an array
         while (($line = fgetcsv($fileStream)) !== false) {
-            if(!empty($line) && count($line) === 13 && !empty($line[9]) && Str::contains($line[2], 'Airport', true)) {
+            if(!empty($line) && count($line) === 13 && !empty($line[9]) && !empty($line[7]) && Str::contains($line[2], 'Airport', true)) {
                 AirportCode::updateOrCreate([
                     'airport'     => $line[2],
                     'iata_code'   => $line[9],

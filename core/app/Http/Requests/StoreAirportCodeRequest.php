@@ -22,13 +22,13 @@ class StoreAirportCodeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'airport' => ['required', 'string', 'max:255'],
-            'airport_type' => ['required', 'string', 'max:255'],
-            'city' => ['required', 'string', 'max:255'],
-            'country' => ['required', 'string', 'max:255'],
-            'iata' => ['required', 'string', 'max:10', 'unique:airport_codes,iata'],
-            'icao' => ['required', 'string', 'max:10'],
-            'faa' => ['required', 'string', 'max:10'],
+            'airport' => ['nullable', 'string', 'max:255'],
+            'iata_code' => ['nullable', 'string', 'max:10', 'unique:airport_codes,iata_code'],
+            'city' => ['nullable', 'string', 'max:255'],
+            'iso_country' => ['nullable', 'string', 'max:255'],
+            'iso_region' => ['nullable', 'string', 'max:255'],
+            'icao_code' => ['nullable', 'string', 'max:10'],
+            'coordinates' => ['nullable', 'string', 'max:255'],
         ];
     }
 }
