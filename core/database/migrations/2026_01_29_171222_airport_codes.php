@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('airport_codes', function (Blueprint $table) {
             $table->id();
-            $table->string('airport')->index();
-            $table->string('airport_type');
-            $table->string('city')->index();
-            $table->string('country');
-            $table->string('iata')->index();
-            $table->string('icao');
-            $table->string('faa');
+            $table->string('airport')->index()->nullable();
+            $table->string('iata_code')->index()->unique()->nullable();
+            $table->string('city')->nullable();
+            $table->string('iso_country')->nullable();
+            $table->string('iso_region')->nullable();
+            $table->string('icao_code')->nullable();
+            $table->string('coordinates')->nullable();
             $table->timestamps();
         });
     }

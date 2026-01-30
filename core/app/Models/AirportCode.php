@@ -13,11 +13,11 @@ class AirportCode extends Model
      */
     protected $fillable = [
         'airport',
-        'airport_type',
+        'iata_code',
         'city',
-        'country',
-        'iata',
-        'icao',
-        'faa',
+        'iso_country',
+        'iso_region',
+        'icao_code',
+        'coordinates',
     ];
 }
