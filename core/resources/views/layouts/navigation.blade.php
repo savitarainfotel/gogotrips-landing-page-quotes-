@@ -23,6 +23,11 @@
                         {{ __('Airport Codes') }}
                     </x-nav-link>
                 </li>
+                <li class="nav-item">
+                    <x-nav-link :href="route('vip-signups.index')" :active="request()->routeIs('vip-signups.*')">
+                        {{ __('VIP Signups') }}
+                    </x-nav-link>
+                </li>
             </ul>
 
             <!-- Settings Dropdown -->
